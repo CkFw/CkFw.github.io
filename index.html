@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>CkFw | Профиль и репозитории</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            background-size: 200% 200%;
+            animation: gradientFlow 12s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 8px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .card {
+            background: rgba(20, 30, 45, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 2.5rem;
+            padding: 2.5rem 2rem;
+            max-width: 1100px;
+            width: 100%;
+            color: white;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1);
+            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s;
+            animation: fadeUp 0.9s ease-out;
+            z-index: 2;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 35px 55px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.2);
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Сетка для двух блоков */
+        .blocks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin: 0;
+        }
+
+        /* Карточка внутри блока */
+        .info-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .info-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-3px);
+        }
+
+        .info-card h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border-left: 4px solid #4facfe;
+            padding-left: 0.8rem;
+            letter-spacing: -0.3px;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-list li {
+            margin-bottom: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+            word-break: break-word;
+            line-height: 1.4;
+        }
+
+        .info-list li strong {
+            font-weight: 600;
+            color: #a0e9ff;
+        }
+
+        .icon {
+            font-size: 1.3rem;
+            min-width: 1.8rem;
+            text-align: center;
+        }
+
+        a {
+            color: #a0e9ff;
+            text-decoration: none;
+            transition: color 0.2s;
+            border-bottom: 1px dotted rgba(160,233,255,0.4);
+        }
+
+        a:hover {
+            color: #ffffff;
+            border-bottom-color: white;
+        }
+
+        .repo-item {
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .repo-item:last-child {
+            border-bottom: none;
+        }
+
+        .repo-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-bottom: 0.2rem;
+        }
+
+        .repo-desc {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .glow-text {
+            margin-top: 1.8rem;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            text-align: center;
+        }
+
+        @media (max-width: 700px) {
+            .card {
+                padding: 1.5rem;
+            }
+            .info-card h2 {
+                font-size: 1.4rem;
+            }
+            .info-list li {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="blocks">
+        <!-- Блок ПРОФИЛЬ -->
+        <div class="info-card">
+            <h2>📌 Профиль</h2>
+            <ul class="info-list">
+                <li><span class="icon">👤</span> <strong>Ник:</strong> CkFw</li>
+                <li><span class="icon">✉️</span> <strong>Gmail:</strong> <a href="mailto:hikituy123@gmail.com">hikituy123@gmail.com</a></li>
+                <li><span class="icon">📱</span> <strong>Telegram-канал:</strong> <a href="https://t.me/+07yt64kEYJthNWEy" target="_blank" rel="noopener noreferrer">t.me/+07yt64kEYJthNWEy</a></li>
+                <li><span class="icon">🐙</span> <strong>GitHub:</strong> <a href="https://github.com/CkFw" target="_blank" rel="noopener noreferrer">@CkFw</a></li>
+                <li><span class="icon">💳</span> <strong>Поддержать (Т‑Банк):</strong> <code style="background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 12px;">2200 7008 5419 7323</code></li>
+            </ul>
+        </div>
+
+        <!-- Блок РЕПОЗИТОРИИ -->
+        <div class="info-card">
+            <h2>📁 Репозитории</h2>
+            <div class="repo-item">
+                <div class="repo-name">
+                    <a href="https://github.com/CkFw/Rise" target="_blank" rel="noopener noreferrer">Rise ↗</a>
+                </div>
+                <div class="repo-desc">Браузер.</div>
+            </div>
+            <div class="glow-text" style="margin-top: 0.8rem; text-align: left; font-size: 0.8rem;">
+                💡 Больше проектов на <a href="https://github.com/CkFw?tab=repositories" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        const body = document.body;
+        function onMouseMove(e) {
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            body.style.backgroundPosition = `${x * 0.5}% ${y * 0.5}%`;
+        }
+        window.addEventListener('mousemove', onMouseMove);
+    })();
+</script>
+</body>
+</html>
