@@ -73,7 +73,6 @@
             }
         }
 
-        /* Сетка для двух блоков */
         .blocks {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -81,7 +80,6 @@
             margin: 0;
         }
 
-        /* Карточка внутри блока */
         .info-card {
             background: rgba(255, 255, 255, 0.08);
             border-radius: 1.5rem;
@@ -188,8 +186,11 @@
 
 <div class="card">
     <div class="blocks">
-        <!-- Блок ПРОФИЛЬ -->
+        <!-- Блок ПРОФИЛЬ с аватаркой -->
         <div class="info-card">
+            <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
+                <img src="avatar.gif" alt="Avatar" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #4facfe; box-shadow: 0 0 15px rgba(79,172,254,0.4);">
+            </div>
             <h2>📌 Профиль</h2>
             <ul class="info-list">
                 <li><span class="icon">👤</span> <strong>Ник:</strong> CkFw</li>
