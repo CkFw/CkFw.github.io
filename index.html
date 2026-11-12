@@ -363,11 +363,9 @@
             tags: ["C++", "Win32 API", "0.7 МБ ОЗУ", "610 КБ"],
             desc: "Ультралёгкий и молниеносный лаунчер для Windows. Позволяет мгновенно искать в интернете или открывать ссылки с помощью настраиваемой горячей клавиши. Написан на чистом C++ без использования тяжелых фреймворков.",
             
-            // Ссылка на твой релиз v1.0
             link: "https://github.com/CkFw/QuikFind/releases/tag/v1.0",
-            linkText: "Скачать", // Текст кнопки
+            linkText: "Скачать", 
             
-            // ВСТАВЬ СЮДА СВОИ НАЗВАНИЯ ФАЙЛОВ!
             images: [
                 "img/quickfind/screen1.png", 
                 "img/quickfind/screen2.png"
@@ -379,9 +377,9 @@
             desc: "Быстрый и безопасный браузер для повседневного использования. Защита от трекеров, встроенный блокировщик рекламы и минималистичный интерфейс.",
             link: "https://github.com/CkFw/Rise",
             linkText: "Перейти в репозиторий",
+            // ИЗМЕНЕНО: Теперь здесь только один скриншот
             images: [
-                "https://via.placeholder.com/600x400/203a43/4facfe?text=Rise+Browser+UI",
-                "https://via.placeholder.com/600x400/203a43/4facfe?text=Rise+Settings"
+                "img/rise/screen1.png"
             ]
         }
     };
@@ -406,7 +404,7 @@
         
         // Настраиваем кнопку
         pLink.href = data.link;
-        pLink.textContent = data.linkText || "Перейти в репозиторий";
+        pLink.textContent = data.linkText || "Скачать";
         
         pTags.innerHTML = '';
         data.tags.forEach(tag => {
