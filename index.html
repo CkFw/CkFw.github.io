@@ -55,6 +55,7 @@
             transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s;
             animation: fadeUp 0.9s ease-out;
             z-index: 2;
+            overflow: hidden;
         }
 
         .card:hover {
@@ -63,16 +64,28 @@
         }
 
         @keyframes fadeUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
+        /* --- Логика переключения вкладок (SPA) --- */
+        .view {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .view.active {
+            display: block;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Стили Главной страницы --- */
         .blocks {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -169,55 +182,262 @@
             text-align: center;
         }
 
+        /* --- Стили Детальной страницы проекта --- */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            margin-bottom: 1.5rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .project-header {
+            margin-bottom: 2rem;
+        }
+
+        .project-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #a0e9ff;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background: rgba(79, 172, 254, 0.2);
+            color: #4facfe;
+            padding: 0.3rem 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .project-content p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .screenshot-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .screenshot-gallery img {
+            width: 100%;
+            height: 300px; /* Фиксированная высота для аккуратности */
+            object-fit: cover; /* Обрезает края, чтобы не плющило */
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+            cursor: zoom-in;
+        }
+
+        .screenshot-gallery img:hover {
+            transform: scale(1.03);
+        }
+
+        .download-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            background: #4facfe;
+            color: #0f2027;
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.8rem;
+            font-weight: 600;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .download-link:hover {
+            background: #00f2fe;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79,172,254,0.4);
+            border-bottom: none;
+        }
+
         @media (max-width: 700px) {
-            .card {
-                padding: 1.5rem;
-            }
-            .info-card h2 {
-                font-size: 1.4rem;
-            }
-            .info-list li {
-                font-size: 0.9rem;
-            }
+            .card { padding: 1.5rem; }
+            .info-card h2 { font-size: 1.4rem; }
+            .info-list li { font-size: 0.9rem; }
+            .project-header h1 { font-size: 2rem; }
+            .screenshot-gallery img { height: auto; max-height: 300px; }
         }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <div class="blocks">
-        <!-- Блок ПРОФИЛЬ с аватаркой -->
-        <div class="info-card">
-            <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
-                <img src="avatar.gif" alt="Avatar" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #4facfe; box-shadow: 0 0 15px rgba(79,172,254,0.4);">
-            </div>
-            <h2>📌 Профиль</h2>
-            <ul class="info-list">
-                <li><span class="icon">👤</span> <strong>Ник:</strong> ClarkFlow</li>
-                <li><span class="icon">✉️</span> <strong>Gmail:</strong> <a href="mailto:hikituy123@gmail.com">hikituy123@gmail.com</a></li>
-                <li><span class="icon">📱</span> <strong>Telegram-канал:</strong> <a href="https://t.me/+07yt64kEYJthNWEy" target="_blank" rel="noopener noreferrer">t.me/+07yt64kEYJthNWEy</a></li>
-                <li><span class="icon">🐙</span> <strong>GitHub:</strong> <a href="https://github.com/CkFw" target="_blank" rel="noopener noreferrer">@CkFw</a></li>
-                <li><span class="icon">💳</span> <strong>DonationAlerts</strong> <a href="https://www.donationalerts.com/r/risebrowser">Support Rise</a></li>
-            </ul>
-        </div>
-
-        <!-- Блок РЕПОЗИТОРИИ -->
-        <div class="info-card">
-            <h2>📁 Репозитории</h2>
-            <div class="repo-item">
-                <div class="repo-name">
-                    <a href="https://github.com/CkFw/Rise" target="_blank" rel="noopener noreferrer">Rise ↗</a>
+    
+    <!-- ================= ГЛАВНАЯ СТРАНИЦА ================= -->
+    <div id="main-view" class="view active">
+        <div class="blocks">
+            <!-- Блок ПРОФИЛЬ -->
+            <div class="info-card">
+                <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
+                    <img src="avatar.gif" alt="Avatar" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #4facfe; box-shadow: 0 0 15px rgba(79,172,254,0.4);">
                 </div>
-                <div class="repo-desc">Браузер.</div>
+                <h2>📌 Профиль</h2>
+                <ul class="info-list">
+                    <li><span class="icon">👤</span> <strong>Ник:</strong> ClarkFlow</li>
+                    <li><span class="icon">✉️</span> <strong>Gmail:</strong> <a href="mailto:hikituy123@gmail.com">hikituy123@gmail.com</a></li>
+                    <li><span class="icon">📱</span> <strong>Telegram-канал:</strong> <a href="https://t.me/+07yt64kEYJthNWEy" target="_blank" rel="noopener noreferrer">t.me/+07yt64kEYJthNWEy</a></li>
+                    <li><span class="icon">🐙</span> <strong>GitHub:</strong> <a href="https://github.com/CkFw" target="_blank" rel="noopener noreferrer">@CkFw</a></li>
+                    <li><span class="icon">💳</span> <strong>DonationAlerts</strong> <a href="https://www.donationalerts.com/r/risebrowser" target="_blank" rel="noopener noreferrer">Support Rise</a></li>
+                </ul>
             </div>
-            <div class="glow-text" style="margin-top: 0.8rem; text-align: left; font-size: 0.8rem;">
-                💡 Больше проектов на <a href="https://github.com/CkFw?tab=repositories" target="_blank">GitHub</a>
+
+            <!-- Блок РЕПОЗИТОРИИ -->
+            <div class="info-card">
+                <h2>📁 Репозитории</h2>
+                
+                <!-- QuickFind -->
+                <div class="repo-item">
+                    <div class="repo-name">
+                        <a href="#" class="repo-link" data-project="quickfind">QuickFind →</a>
+                    </div>
+                    <div class="repo-desc">Ультралёгкий лаунчер для Windows (0.7 МБ ОЗУ, 600 КБ вес).</div>
+                </div>
+
+                <!-- Rise -->
+                <div class="repo-item">
+                    <div class="repo-name">
+                        <a href="#" class="repo-link" data-project="rise">Rise →</a>
+                    </div>
+                    <div class="repo-desc">Браузер нового поколения.</div>
+                </div>
+
+                <div class="glow-text" style="margin-top: 0.8rem; text-align: left; font-size: 0.8rem;">
+                    💡 Больше проектов на <a href="https://github.com/CkFw?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- ================= ДЕТАЛЬНАЯ СТРАНИЦА ПРОЕКТА ================= -->
+    <div id="project-view" class="view">
+        <button class="back-btn" id="back-btn">
+            <span>←</span> Назад
+        </button>
+        
+        <div class="project-header">
+            <h1 id="p-title">Название</h1>
+            <div class="project-tags" id="p-tags"></div>
+        </div>
+
+        <div class="project-content">
+            <p id="p-desc">Описание...</p>
+            <a href="#" id="p-link" class="download-link" target="_blank" rel="noopener noreferrer">Перейти в репозиторий</a>
+        </div>
+
+        <div class="screenshot-gallery" id="p-gallery"></div>
+    </div>
+
 </div>
 
 <script>
+    // --- База данных проектов ---
+    const projectsData = {
+        quickfind: {
+            title: "QuickFind",
+            tags: ["C++", "Win32 API", "0.7 МБ ОЗУ", "600 КБ"],
+            desc: "Ультралёгкий и молниеносный лаунчер для Windows. Позволяет мгновенно искать в интернете или открывать ссылки с помощью настраиваемой горячей клавиши. Написан на чистом C++ без использования тяжелых фреймворков (Electron, .NET).",
+            link: "https://github.com/CkFw/QuickFind",
+            // ВСТАВЬ СЮДА СВОИ НАЗВАНИЯ ФАЙЛОВ!
+            images: [
+                "img/quickfind/screen1.png", 
+                "img/quickfind/screen2.png"
+            ]
+        },
+        rise: {
+            title: "Rise",
+            tags: ["Browser", "Privacy", "Speed"],
+            desc: "Быстрый и безопасный браузер для повседневного использования. Защита от трекеров, встроенный блокировщик рекламы и минималистичный интерфейс.",
+            link: "https://github.com/CkFw/Rise",
+            images: [
+                "https://via.placeholder.com/600x400/203a43/4facfe?text=Rise+Browser+UI",
+                "https://via.placeholder.com/600x400/203a43/4facfe?text=Rise+Settings"
+            ]
+        }
+    };
+
+    // --- Логика переключения ---
+    const mainView = document.getElementById('main-view');
+    const projectView = document.getElementById('project-view');
+    const backBtn = document.getElementById('back-btn');
+
+    const pTitle = document.getElementById('p-title');
+    const pTags = document.getElementById('p-tags');
+    const pDesc = document.getElementById('p-desc');
+    const pLink = document.getElementById('p-link');
+    const pGallery = document.getElementById('p-gallery');
+
+    function openProject(projectId) {
+        const data = projectsData[projectId];
+        if (!data) return;
+
+        pTitle.textContent = data.title;
+        pDesc.textContent = data.desc;
+        pLink.href = data.link;
+        
+        pTags.innerHTML = '';
+        data.tags.forEach(tag => {
+            const span = document.createElement('span');
+            span.className = 'tag';
+            span.textContent = tag;
+            pTags.appendChild(span);
+        });
+
+        pGallery.innerHTML = '';
+        data.images.forEach(imgSrc => {
+            const img = document.createElement('img');
+            img.src = imgSrc;
+            img.alt = data.title + " screenshot";
+            // Добавляем клик, чтобы открыть картинку в новой вкладке в полном размере
+            img.onclick = () => window.open(imgSrc, '_blank'); 
+            pGallery.appendChild(img);
+        });
+
+        mainView.classList.remove('active');
+        projectView.classList.add('active');
+        
+        document.querySelector('.card').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('.repo-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const projId = link.getAttribute('data-project');
+            openProject(projId);
+        });
+    });
+
+    backBtn.addEventListener('click', () => {
+        projectView.classList.remove('active');
+        mainView.classList.add('active');
+    });
+
+    // --- Эффект движения фона от мыши ---
     (function() {
         const body = document.body;
         function onMouseMove(e) {
