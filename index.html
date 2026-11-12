@@ -244,8 +244,8 @@
 
         .screenshot-gallery img {
             width: 100%;
-            height: 300px; /* Фиксированная высота для аккуратности */
-            object-fit: cover; /* Обрезает края, чтобы не плющило */
+            height: 300px;
+            object-fit: cover;
             border-radius: 1rem;
             border: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
@@ -261,19 +261,19 @@
             display: inline-block;
             margin-top: 1.5rem;
             background: #4facfe;
-            color: #0f2027;
+            color: #0f2027 !important;
             padding: 0.8rem 1.5rem;
             border-radius: 0.8rem;
             font-weight: 600;
             border: none;
             transition: all 0.2s;
+            border-bottom: none !important;
         }
 
         .download-link:hover {
             background: #00f2fe;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(79,172,254,0.4);
-            border-bottom: none;
         }
 
         @media (max-width: 700px) {
@@ -314,9 +314,9 @@
                 <!-- QuickFind -->
                 <div class="repo-item">
                     <div class="repo-name">
-                        <a href="#" class="repo-link" data-project="quickfind">QuickFind →</a>
+                        <a href="#" class="repo-link" data-project="quickfind">QuikFind →</a>
                     </div>
-                    <div class="repo-desc">Ультралёгкий лаунчер для Windows (0.7 МБ ОЗУ, 610 КБ вес).</div>
+                    <div class="repo-desc">Ультралёгкий лаунчер для Windows (0.7 МБ ОЗУ, 600 КБ вес).</div>
                 </div>
 
                 <!-- Rise -->
@@ -359,10 +359,14 @@
     // --- База данных проектов ---
     const projectsData = {
         quickfind: {
-            title: "QuickFind",
-            tags: ["C++", "Win32 API", "0.7 МБ ОЗУ", "610 КБ"],
-            desc: "Ультралёгкий и молниеносный лаунчер для Windows. Позволяет мгновенно искать в интернете или открывать ссылки с помощью настраиваемой горячей клавиши. Написан на чистом C++ без использования тяжелых фреймворков (Electron, .NET).",
-            link: "https://github.com/CkFw/QuickFind",
+            title: "QuikFind",
+            tags: ["C++", "Win32 API", "0.7 МБ ОЗУ", "600 КБ"],
+            desc: "Ультралёгкий и молниеносный лаунчер для Windows. Позволяет мгновенно искать в интернете или открывать ссылки с помощью настраиваемой горячей клавиши. Написан на чистом C++ без использования тяжелых фреймворков.",
+            
+            // Ссылка на твой релиз v1.0
+            link: "https://github.com/CkFw/QuikFind/releases/tag/v1.0",
+            linkText: "Скачать QuikFind v1.0", // Текст кнопки
+            
             // ВСТАВЬ СЮДА СВОИ НАЗВАНИЯ ФАЙЛОВ!
             images: [
                 "img/quickfind/screen1.png", 
@@ -374,6 +378,7 @@
             tags: ["Browser", "Privacy", "Speed"],
             desc: "Быстрый и безопасный браузер для повседневного использования. Защита от трекеров, встроенный блокировщик рекламы и минималистичный интерфейс.",
             link: "https://github.com/CkFw/Rise",
+            linkText: "Перейти в репозиторий",
             images: [
                 "https://via.placeholder.com/600x400/203a43/4facfe?text=Rise+Browser+UI",
                 "https://via.placeholder.com/600x400/203a43/4facfe?text=Rise+Settings"
@@ -398,7 +403,10 @@
 
         pTitle.textContent = data.title;
         pDesc.textContent = data.desc;
+        
+        // Настраиваем кнопку
         pLink.href = data.link;
+        pLink.textContent = data.linkText || "Перейти в репозиторий";
         
         pTags.innerHTML = '';
         data.tags.forEach(tag => {
@@ -413,7 +421,6 @@
             const img = document.createElement('img');
             img.src = imgSrc;
             img.alt = data.title + " screenshot";
-            // Добавляем клик, чтобы открыть картинку в новой вкладке в полном размере
             img.onclick = () => window.open(imgSrc, '_blank'); 
             pGallery.appendChild(img);
         });
